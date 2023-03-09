@@ -31,14 +31,9 @@
     <button type="submit" class="input-group-text bg-primary">Search</button>
 </div>
 </form>
-<div class="nav-link mt-0">
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary" data-toggle="dropdown">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="px-1">Cart</span> <span class="badge badge-pill bg-danger">{{count((array) session('cart'))}}</span>
-            </button>
-        </div>
-</div>
 </div>
 
 </div>
 </nav>
+
+

@@ -36,12 +36,14 @@ Route::post('/cart/add','PrductController@addToCart')->name('cart.add');
 Route::get('/register',[AuthController::class,'create'])->middleware('guest');
 Route::post('/register',[AuthController::class,'store'])->middleware('guest');
 
-Route::get('/login',[AuthController::class,'login'])->middleware('guest');
+Route::get('/login',[AuthController::class,'login'])->middleware('guest')->name('login');
 Route::post('/login',[AuthController::class,'post_login'])->middleware('guest');
 
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');
 
 //Shopping Cart
-Route::get("add-to-cart/{id}",[PuddingController::class,'addToCart'])->name('add_to_cart');
-
+Route::get("add-to-cart/{id}",[PuddingController::class,'addToCart'])->name('add_to_cart')->middleware('auth');
+Route::get("/cart",[PuddingController::class,'cart'])->middleware('auth');
+Route::patch('/update-cart',[PuddingController::class,'update'])->name('update_cart')->middleware('auth');
+Route::delete("/remove-from-cart",[PuddingController::class,'remove'])->name('remove_from_cart')->middleware('auth');
 

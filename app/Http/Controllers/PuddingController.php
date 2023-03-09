@@ -50,6 +50,11 @@ class PuddingController extends Controller
     //     return redirect()->back()->with('success','Product Added To Cart');
     // }
 
+    public function cart()
+    {
+        return view ('cart');
+    }
+
     public function addToCart($id)
     {
         $pudding=Pudding::findOrFail($id);
@@ -67,5 +72,28 @@ class PuddingController extends Controller
         }
         session()->put('cart',$cart);
         return redirect()->back()->with('success',"Pudding Add To Cart Successfully!");
+    }
+
+    public function update(Request $request)
+    {
+       if($request->id && $request->quantity){
+        $cart=session()->get('cart');
+        $cart[$request->id]["quantity"]= $request->quantity;
+        session()->put('cart',$cart);
+        session()->flash('success','Cart Successfully Update!');
+
+       }
+    }
+
+    public function remove(Request $request)
+    {
+        if($request->id){
+            $cart=session()->get('cart');
+            if(isset($cart[$request->id])){
+                unset($cart[$request->id]);
+                session()->put('cart',$cart);
+            }
+            session()->flash('success','Product Successfully Removed!');
+        }
     }
 }

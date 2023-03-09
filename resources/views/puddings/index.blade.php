@@ -1,7 +1,8 @@
 <x-layout>
-@if(session('success'))
-<div class="alert alert-success text-center">{{session('success')}}</div>
-@endif
+  @if(session('success'))
+  <div class="alert alert-success text-center">{{session('success')}}</div>
+  @endif
+  <x-mini-shoppingcart/>
 <section class="container">
     <div class="row">
         <div class="col-md-2 mt-5  bg-dark">
